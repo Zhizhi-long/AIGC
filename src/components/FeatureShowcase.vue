@@ -1,22 +1,31 @@
 <template>
-    <div class="feature-section py-20">
+    <div class="feature-section py-20 bg-[linear-gradient(110deg,#adabf587_0%,rgba(255,255,255,0.00)_99%)]">
       <!-- 容器（用于触发动画） -->
       <div 
         ref="featureContainer"
-        class="container mx-auto px-4"
+        class="container mx-auto px-4 flex items-center justify-between"
       >
         <!-- 左侧内容（从左边滑入） -->
         <div 
-          class="feature-left"
+          class="feature-left flex flex-col"
           :class="{ 'animate-slideInLeft': isVisible }"
         >
-          <h2 class="text-3xl font-bold">左侧标题</h2>
-          <p class="mt-4">这里是左侧内容的描述...</p>
+          <div class="text-4xl text-white">titile title title title</div>
+          <div class="text-xl mt-4 mb-4 text-white">titile title title title titile title title title titile title title title titile title title title titile title title title Online photo editor for everyone,Online photo editor for everyone,Online photo editor
+            for everyone,Online photo editor for everyone Online photo editor for everyone,Online photo editor for everyone,Online photo editor
+            for everyone,Online photo editor for everyone Online photo editor for everyone,Online photo editor for everyone,Online photo editor
+            for everyone,Online photo editor for everyone Online photo editor for everyone,Online photo editor for everyone,Online photo editor
+            for everyone,Online photo editor for everyone</div>
+          <button class="py-2 text-lg font-bold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+            <div>
+              click it to explore more
+            </div>
+          </button>
         </div>
-  
+        
         <!-- 右侧内容（从右边滑入） -->
         <div 
-          class="feature-right"
+          class="feature-right items-center"
           :class="{ 'animate-slideInRight': isVisible }"
         >
           <img 

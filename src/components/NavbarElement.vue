@@ -47,7 +47,7 @@ import { ref, onMounted, onUnmounted } from 'vue';
 const isScrolled = ref(false);
 
 const handleScroll = () => {
-  isScrolled.value = window.scrollY > 500; // 滚动超过 50px 时触发
+  isScrolled.value = window.scrollY > 50; // 滚动超过 50px 时触发
 };
 
 onMounted(() => {
