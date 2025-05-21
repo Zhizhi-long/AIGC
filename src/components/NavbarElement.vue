@@ -1,11 +1,10 @@
 <template>
     <!-- Navbar start -->
     <nav class="fixed flex items-center justify-between w-full px-5 z-50 transition-all duration-300" 
-    :class="{ 'bg-white shadow-md': isScrolled, 'bg-transparent': !isScrolled }">
+    :class="{ 'bg-[#E3E3E3] shadow-md': isScrolled, 'bg-transparent': !isScrolled }">
 		<!-- Logo start -->
 		<div class="h-full flex items-center justify-center">
-			<div class="bg-red-600 w-10 h-10 rounded-full "></div>
-			<div class="mx-4 font-medium" :class="{'text-white': !isScrolled, 'text-black': isScrolled}">name(can use other font or picture)</div>
+			<img src="../assets/project-name.png" />
 		</div>
 		<!-- Logo end -->
 
@@ -17,22 +16,12 @@
 
 		<!-- Menu content start -->
 		<div class="absolute left-0 right-0 translate-y-16 bg-opacity-90 bg-white md:bg-none md:bg-opacity-0 shadow hidden md:flex flex-col gap-4 items-center p-4 md:flex-row md:static md:shadow-none md:translate-y-0" role="menu" aria-expanded="false">
+			<LanguageSwitcher />
+
 			<!-- Links start -->
 			<a href="#" role="menuitem">
-				<p class="mx-4 " :class="{'text-white': !isScrolled, 'text-black': isScrolled}">Home</p>
+				<p class="mx-4" :class="text-black">About us</p>
 			</a>
-
-			<a href="#" role="menuitem">
-				<p class="mx-4" :class="{'text-white': !isScrolled, 'text-black': isScrolled}">About</p>
-			</a>
-
-			<a href="#" role="menuitem">
-				<p class="mx-4" :class="{'text-white': !isScrolled, 'text-black': isScrolled}">Explore</p>
-			</a>
-
-			<button class="btn" :class="{'text-white': !isScrolled, 'text-black': isScrolled}" role="menuitem">
-				Contact us
-			</button>
 			<!-- Links end -->
 		</div>
 		<!-- Menu content end -->
@@ -43,6 +32,7 @@
 <script setup>
 
 import { ref, onMounted, onUnmounted } from 'vue';
+import LanguageSwitcher from './LanguageSwitcher.vue'
 
 const isScrolled = ref(false);
 
