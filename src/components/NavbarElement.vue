@@ -1,7 +1,6 @@
 <template>
     <!-- Navbar start -->
-    <nav class="fixed flex items-center justify-between w-full px-5 z-50 transition-all duration-300" 
-    :class="{ 'bg-[#E3E3E3] shadow-md': isScrolled, 'bg-transparent': !isScrolled }">
+    <nav class="fixed flex items-center justify-between w-full px-5 z-50 transition-all duration-300 bg-[#E3E3E3]" >
 		<!-- Logo start -->
 		<div class="h-full flex items-center justify-center">
 			<img src="../assets/project-name.png" />

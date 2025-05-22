@@ -17,6 +17,16 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue'),
     },
+    {
+      path: '/architectural-render',
+      name: 'architectural-render',
+      component: () => import('../views/ArchitecturalRender.vue')
+    },
+    {
+      path: '/architectural-render-n',
+      name: 'architectural-render-n',
+      component: () => import('../views/ArchitecturalRender-new.vue')
+    }
   ],
 })
 
