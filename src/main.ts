@@ -4,6 +4,7 @@ import { createPinia } from 'pinia'
 import { createI18n } from 'vue-i18n' // 引入vue-i18n
 import App from './App.vue'
 import router from './router'
+import './styles/font.css' // 导入字体
 
 // 1. 准备语言翻译信息
 const messages = {

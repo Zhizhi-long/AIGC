@@ -62,34 +62,56 @@
 
                 <!-- 右侧结果区域 -->
                 <div class="result-section">
-                    <div class="result-placeholder" v-if="!generatedResult">
-                        <div class="placeholder-content">
-                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z"
-                                    fill="#B39DDB" />
-                                <path
-                                    d="M12 6C8.69 6 6 8.69 6 12C6 15.31 8.69 18 12 18C15.31 18 18 15.31 18 12C18 8.69 15.31 6 12 6ZM12 16C9.79 16 8 14.21 8 12C8 9.79 9.79 8 12 8C14.21 8 16 9.79 16 12C16 14.21 14.21 16 12 16Z"
-                                    fill="#B39DDB" />
-                                <path
-                                    d="M12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10Z"
-                                    fill="#B39DDB" />
-                            </svg>
-                            <p>3D result will appear here</p>
+                    <div class="centered" v-if="isLoading">
+                        <h1>Cooking in progress..</h1>
+                        <div id="cooking">
+                            <div class="bubble"></div>
+                            <div class="bubble"></div>
+                            <div class="bubble"></div>
+                            <div class="bubble"></div>
+                            <div class="bubble"></div>
+                            <div id="area">
+                                <div id="sides">
+                                    <div id="pan"></div>
+                                    <div id="handle"></div>
+                                </div>
+                                <div id="pancake">
+                                    <div id="pastry"></div>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+
+                    <div class="result-placeholder" v-else-if="!generatedResult">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z"
+                                fill="#B39DDB" />
+                            <path
+                                d="M12 6C8.69 6 6 8.69 6 12C6 15.31 8.69 18 12 18C15.31 18 18 15.31 18 12C18 8.69 15.31 6 12 6ZM12 16C9.79 16 8 14.21 8 12C8 9.79 9.79 8 12 8C14.21 8 16 9.79 16 12C16 14.21 14.21 16 12 16Z"
+                                fill="#B39DDB" />
+                            <path
+                                d="M12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10Z"
+                                fill="#B39DDB" />
+                        </svg>
+                        <p>result will appear here</p>
                     </div>
 
                     <div class="result-display" v-else>
                         <img :src="generatedResult" alt="3D Conversion Result">
-                        <button class="download-btn" @click="downloadResult">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M19 9H15V3H9V9H5L12 16L19 9Z" fill="white" />
-                                <path d="M5 18V20H19V18H5Z" fill="white" />
-                            </svg>
-                            Download
-                        </button>
+                        <div class="bottom-btn-content">
+                            <button class="reproduce-btn" @click="reproduceImg">
+                                Reproduce
+                            </button>
+                            <button class="download-btn" @click="downloadResult">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19 9H15V3H9V9H5L12 16L19 9Z" fill="white" />
+                                    <path d="M5 18V20H19V18H5Z" fill="white" />
+                                </svg>
+                                Download
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -103,6 +125,7 @@ import UploadImage from '@/components/UploadImage.vue'
 
 // 上传的文件
 const uploadedFiles = ref([])
+const isLoading = ref(false)
 
 const imageUrl = ref('')
 
@@ -142,8 +165,14 @@ const canGenerate = computed(() => {
 
 // 生成3D结果
 const generate3D = () => {
-    // 模拟生成过程
-    generatedResult.value = 'https://placehold.co/400x400/B39DDB/white?text=3D+Result'
+    isLoading.value = true
+    console.log('222')
+    setTimeout(() => {
+        // 模拟生成过程
+        generatedResult.value = 'https://placehold.co/400x400/B39DDB/white?text=3D+Result'
+        isLoading.value = false
+        console.log('111')
+    }, 6000);
 }
 
 // 下载结果
@@ -154,6 +183,10 @@ const downloadResult = () => {
     link.href = generatedResult.value
     link.download = '3d-result.png'
     link.click()
+}
+
+const reproduceImg = () => {
+    console.log(reproduceImg)
 }
 </script>
 
@@ -272,6 +305,9 @@ const downloadResult = () => {
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .result-placeholder {
@@ -282,11 +318,16 @@ const downloadResult = () => {
     padding: 2rem;
     color: #7e57c2;
     text-align: center;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .result-display {
-    position: relative;
     height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .result-display img {
@@ -296,9 +337,18 @@ const downloadResult = () => {
 }
 
 .download-btn {
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
+    background: #5e35b1;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-weight: 500;
+}
+.reproduce-btn {
     background: #5e35b1;
     color: white;
     border: none;
@@ -399,6 +449,7 @@ const downloadResult = () => {
 .action-buttons {
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 
 .privacy-agreement {
@@ -473,36 +524,44 @@ const downloadResult = () => {
     border-style: solid;
     border-color: #333 transparent transparent transparent;
 }
+
+.bottom-btn-content {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
 .quantity-options {
-  display: flex;
-  gap: 8px;
+    display: flex;
+    gap: 8px;
 }
 
 .quantity-option {
-  width: 40px;
-  height: 40px;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  background: white;
-  font-size: 18px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
 }
 
 .quantity-option:hover {
-  border-color: #aaa;
-  transform: translateY(-2px);
+    border-color: #aaa;
+    transform: translateY(-2px);
 }
 
 .quantity-option.active {
-  border-color: #1890ff;
-  background-color: #e6f7ff;
-  color: #1890ff;
-  font-weight: bold;
-  box-shadow: 0 2px 8px rgba(24, 144, 255, 0.2);
+    border-color: #1890ff;
+    background-color: #e6f7ff;
+    color: #1890ff;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(24, 144, 255, 0.2);
 }
 
 @media (max-width: 768px) {
@@ -517,6 +576,274 @@ const downloadResult = () => {
     .result-section {
         order: 2;
         margin-bottom: 2rem;
+    }
+}
+
+.centered {}
+
+h1 {
+    position: relative;
+    margin: 0 auto;
+    top: 25vh;
+    width: 100vw;
+    text-align: center;
+    font-family: "Amatic SC";
+    font-size: 6vh;
+    color: #5e35b1;
+    opacity: 0.75;
+    animation: pulse 2.5s linear infinite;
+}
+
+#cooking {
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    width: 75vh;
+    height: 75vh;
+    overflow: hidden;
+}
+
+#cooking .bubble {
+    position: absolute;
+    border-radius: 100%;
+    box-shadow: 0 0 0.25vh #4d4d4d;
+    opacity: 0;
+}
+
+#cooking .bubble:nth-child(1) {
+    margin-top: 2.5vh;
+    left: 58%;
+    width: 2.5vh;
+    height: 2.5vh;
+    background-color: #454545;
+    animation: bubble 2s cubic-bezier(0.53, 0.16, 0.39, 0.96) infinite;
+}
+
+#cooking .bubble:nth-child(2) {
+    margin-top: 3vh;
+    left: 52%;
+    width: 2vh;
+    height: 2vh;
+    background-color: #5e35b1;
+    animation: bubble 2s ease-in-out 0.35s infinite;
+}
+
+#cooking .bubble:nth-child(3) {
+    margin-top: 1.8vh;
+    left: 50%;
+    width: 1.5vh;
+    height: 1.5vh;
+    background-color: #5e35b1;
+    animation: bubble 1.5s cubic-bezier(0.53, 0.16, 0.39, 0.96) 0.55s infinite;
+}
+
+#cooking .bubble:nth-child(4) {
+    margin-top: 2.7vh;
+    left: 56%;
+    width: 1.2vh;
+    height: 1.2vh;
+    background-color: #5e35b1;
+    animation: bubble 1.8s cubic-bezier(0.53, 0.16, 0.39, 0.96) 0.9s infinite;
+}
+
+#cooking .bubble:nth-child(5) {
+    margin-top: 2.7vh;
+    left: 63%;
+    width: 1.1vh;
+    height: 1.1vh;
+    background-color: #5e35b1;
+    animation: bubble 1.6s ease-in-out 1s infinite;
+}
+
+#cooking #area {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    height: 50%;
+    background-color: transparent;
+    transform-origin: 15% 60%;
+    animation: flip 2.1s ease-in-out infinite;
+}
+
+#cooking #area #sides {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-origin: 15% 60%;
+    animation: switchSide 2.1s ease-in-out infinite;
+}
+
+#cooking #area #sides #handle {
+    position: absolute;
+    bottom: 18%;
+    right: 80%;
+    width: 35%;
+    height: 20%;
+    background-color: transparent;
+    border-top: 1vh solid #333;
+    border-left: 1vh solid transparent;
+    border-radius: 100%;
+    transform: rotate(20deg) rotateX(0deg) scale(1.3, 0.9);
+}
+
+#cooking #area #sides #pan {
+    position: absolute;
+    bottom: 20%;
+    right: 30%;
+    width: 50%;
+    height: 8%;
+    background-color: #5e35b1;
+    border-radius: 0 0 1.4em 1.4em;
+    transform-origin: -15% 0;
+}
+
+#cooking #area #pancake {
+    position: absolute;
+    top: 24%;
+    width: 100%;
+    height: 100%;
+    transform: rotateX(85deg);
+    animation: jump 2.1s ease-in-out infinite;
+}
+
+#cooking #area #pancake #pastry {
+    position: absolute;
+    bottom: 26%;
+    right: 37%;
+    width: 40%;
+    height: 45%;
+    background-color: #5e35b1;
+    box-shadow: 0 0 3px 0 #5e35b1;
+    border-radius: 100%;
+    transform-origin: -20% 0;
+    animation: fly 2.1s ease-in-out infinite;
+}
+
+@keyframes jump {
+    0% {
+        top: 24%;
+        transform: rotateX(85deg);
+    }
+
+    25% {
+        top: 10%;
+        transform: rotateX(0deg);
+    }
+
+    50% {
+        top: 30%;
+        transform: rotateX(85deg);
+    }
+
+    75% {
+        transform: rotateX(0deg);
+    }
+
+    100% {
+        transform: rotateX(85deg);
+    }
+}
+
+@keyframes flip {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    5% {
+        transform: rotate(-27deg);
+    }
+
+    30%,
+    50% {
+        transform: rotate(0deg);
+    }
+
+    55% {
+        transform: rotate(27deg);
+    }
+
+    83.3% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes switchSide {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    50% {
+        transform: rotateY(180deg);
+    }
+
+    100% {
+        transform: rotateY(0deg);
+    }
+}
+
+@keyframes fly {
+    0% {
+        bottom: 26%;
+        transform: rotate(0deg);
+    }
+
+    10% {
+        bottom: 40%;
+    }
+
+    50% {
+        bottom: 26%;
+        transform: rotate(-190deg);
+    }
+
+    80% {
+        bottom: 40%;
+    }
+
+    100% {
+        bottom: 26%;
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes bubble {
+    0% {
+        transform: scale(0.15, 0.15);
+        top: 80%;
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.1, 1.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0.33, 0.33);
+        top: 60%;
+        opacity: 0;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1, 1);
+        opacity: 0.25;
+    }
+
+    50% {
+        transform: scale(1.2, 1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1, 1);
+        opacity: 0.25;
     }
 }
 </style>
