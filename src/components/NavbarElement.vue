@@ -18,9 +18,11 @@
 			<LanguageSwitcher />
 
 			<!-- Links start -->
-			<a href="#" role="menuitem">
-				<p class="mx-4" :class="text-black">About us</p>
-			</a>
+			<a href="#" role="menuitem" class="group">
+			<p class="mx-4 px-2 py-1 rounded transition-all duration-300 transform group-hover:scale-105 group-hover:bg-gray-300">
+				About us
+			</p>
+		</a>
 			<!-- Links end -->
 		</div>
 		<!-- Menu content end -->

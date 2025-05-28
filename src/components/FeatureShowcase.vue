@@ -1,5 +1,5 @@
 <template>
-    <div class="feature-section py-20 bg-[linear-gradient(110deg,#adabf587_0%,rgba(255,255,255,0.00)_99%)]">
+    <div class="feature-section py-20 ">
       <!-- 容器（用于触发动画） -->
       <div 
         ref="featureContainer"
@@ -72,9 +72,6 @@
   
   <style scoped>
   /* 布局样式 */
-  .feature-section {
-    background-color: #f9fafb;
-  }
   
   .feature-left, .feature-right {
     width: 48%;

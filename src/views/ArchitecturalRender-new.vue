@@ -103,7 +103,6 @@ import UploadImage from '@/components/UploadImage.vue'
 
 // 上传的文件
 const uploadedFiles = ref([])
-const fileInput = ref(null)
 
 const imageUrl = ref('')
 
@@ -125,32 +124,7 @@ const agreedToPrivacy = ref(false)
 // 生成结果
 const generatedResult = ref(null)
 
-// 触发文件选择
-const triggerFileInput = () => {
-    fileInput.value.click()
-}
-
 const showTooltip = ref(false)
-
-// 处理文件上传
-const handleFileUpload = (event) => {
-    const files = Array.from(event.target.files)
-    files.forEach(file => {
-        const reader = new FileReader()
-        reader.onload = (e) => {
-            uploadedFiles.value.push({
-                file: file,
-                preview: e.target.result
-            })
-        }
-        reader.readAsDataURL(file)
-    })
-}
-
-// 移除文件
-const removeFile = (index) => {
-    uploadedFiles.value.splice(index, 1)
-}
 
 // 选择样式
 const selectStyle = (index) => {
@@ -163,7 +137,7 @@ const selectQuantity = (index) => {
 
 // 检查是否可以生成
 const canGenerate = computed(() => {
-    return uploadedFiles.value.length > 0 && agreedToPrivacy.value
+    return imageUrl?.value && agreedToPrivacy?.value
 })
 
 // 生成3D结果

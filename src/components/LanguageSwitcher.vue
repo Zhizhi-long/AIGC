@@ -30,7 +30,7 @@
   }
   
   .language-switcher:hover {
-    background: #e9e9e9;
+    background: #d1d5db;
     transform: scale(1.05);
   }
   </style>
