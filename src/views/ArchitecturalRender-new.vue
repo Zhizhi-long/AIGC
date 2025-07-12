@@ -1,5 +1,10 @@
 <template>
     <div class="bg-[#E3E3E3] pt-12">
+        <header class="header">
+          <nav class="nav container">
+              <div @click="onLogoClick" class="logo">🏠 ArchiFuture AI</div>
+          </nav>
+      </header>
         <div class="conversion-container">
             <div class="title">Architectural Draft to Render</div>
 
@@ -122,6 +127,10 @@
 <script setup>
 import { ref, computed } from 'vue'
 import UploadImage from '@/components/UploadImage.vue'
+import { architecturalRenderApi } from '../apis/generator.js'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 // 上传的文件
 const uploadedFiles = ref([])
@@ -158,6 +167,10 @@ const selectQuantity = (index) => {
     quantity.value = index
 }
 
+const onLogoClick = () =>{
+    router.push('/')
+}
+
 // 检查是否可以生成
 const canGenerate = computed(() => {
     return imageUrl?.value && agreedToPrivacy?.value
@@ -166,13 +179,18 @@ const canGenerate = computed(() => {
 // 生成3D结果
 const generate3D = () => {
     isLoading.value = true
-    console.log('222')
-    setTimeout(() => {
-        // 模拟生成过程
-        generatedResult.value = 'https://placehold.co/400x400/B39DDB/white?text=3D+Result'
-        isLoading.value = false
-        console.log('111')
-    }, 6000);
+    console.log(imageUrl.value, selectedStyle.value, quantity.value )
+    const imageURL = imageUrl.value
+    const type = selectedStyle.value
+    const batchSize = quantity.value
+    architecturalRenderApi({ imageURL, type, batchSize })
+        .then((res) => {
+            generatedResult.value = Object.values(res || {})[0]
+            isLoading.value = false
+        })
+        .catch(() => {
+            isLoading.value = false
+        })
 }
 
 // 下载结果
@@ -191,6 +209,35 @@ const reproduceImg = () => {
 </script>
 
 <style scoped>
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+.header {
+  background: rgba(13, 13, 75, 0.95);
+  color: white;
+  padding: 1rem 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ff6b35;
+}
 .conversion-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -348,6 +395,7 @@ const reproduceImg = () => {
     cursor: pointer;
     font-weight: 500;
 }
+
 .reproduce-btn {
     background: #5e35b1;
     color: white;

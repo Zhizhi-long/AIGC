@@ -27,7 +27,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <NavbarElement />
   <RouterView />
 </template>
 
