@@ -3,7 +3,7 @@
       <!-- Header -->
       <header class="header">
           <nav class="nav container">
-              <div class="logo">🏠 ArchiFuture AI</div>
+              <div class="logo"> <img class="logo-img" src="../assets/logo.jpeg" alt="" /> ArchiFuture AI</div>
               <ul class="nav-links">
                   <li><a href="#demo">Product Demo</a></li>
                   <li><a href="#features">Core Features</a></li>
@@ -105,37 +105,49 @@
               <h2 class="section-title">Core Features</h2>
               <div class="features-grid">
                   <div class="feature-card">
-                      <div class="feature-icon">🧠</div>
+                      <div class="feature-icon-container">
+                        <img class="feature-icon" src="../assets/AI-Powered-Planning.png" alt="">
+                      </div>
                       <h3>AI-Powered Planning</h3>
                       <p>Deep learning-based land segmentation algorithms automatically calculate optimal building
                           layouts, ensuring regulatory compliance while maximizing commercial value.</p>
                   </div>
                   <div class="feature-card">
-                      <div class="feature-icon">🎨</div>
+                    <div class="feature-icon-container">
+                        <img class="feature-icon" src="../assets/One-Click-3D-Rendering_PhotoGrid.png" alt="">
+                      </div>
                       <h3>One-Click 3D Rendering</h3>
                       <p>Professional-grade 3D visualization engine supporting multiple architectural styles, from
                           modern minimalism to neoclassicism, generating high-quality renders in 15 seconds.</p>
                   </div>
                   <div class="feature-card">
-                      <div class="feature-icon">💰</div>
+                    <div class="feature-icon-container">
+                        <img class="feature-icon" src="../assets/Real-Time-Value-Calculation_PhotoGrid.png" alt="">
+                      </div>
                       <h3>Real-Time Value Calculation</h3>
                       <p>Integrated market data and construction cost models provide real-time ROI calculations,
                           helping developers make more informed investment decisions.</p>
                   </div>
                   <div class="feature-card">
-                      <div class="feature-icon">🌱</div>
+                    <div class="feature-icon-container">
+                        <img class="feature-icon" src="../assets/Green-Building-Optimization.png" alt="">
+                      </div>
                       <h3>Green Building Optimization</h3>
                       <p>Built-in BEAM Plus and LEED certification standards automatically optimize green ratios and
                           sustainable design, facilitating green building certification.</p>
                   </div>
                   <div class="feature-card">
-                      <div class="feature-icon">⚡</div>
+                    <div class="feature-icon-container">
+                        <img class="feature-icon" src="../assets/Rapid-Iteration.png" alt="">
+                      </div>
                       <h3>Rapid Iteration</h3>
                       <p>Traditional planning takes 20 days, we need only 15 minutes. Support real-time parameter
                           adjustments with instant preview of different scenarios and revenue comparisons.</p>
                   </div>
                   <div class="feature-card">
-                      <div class="feature-icon">🔗</div>
+                    <div class="feature-icon-container">
+                        <img class="feature-icon" src="../assets/Seamless-Integration.png" alt="">
+                      </div>
                       <h3>Seamless Integration</h3>
                       <p>Support API integration with mainstream design software like AutoCAD and Revit, no need to
                           change existing workflows, easy to get started.</p>
@@ -150,7 +162,9 @@
               <h2 class="section-title">Application Scenarios</h2>
               <div class="cases-grid">
                   <div class="case-card">
-                      <div class="case-image">🏗️</div>
+                      <div class="case-image">
+                        <img class="case-image-item" src="../assets/Real-estate-developer_PhotoGrid.png"></img>
+                      </div>
                       <div class="case-content">
                           <h3 class="case-title">Real Estate Developers</h3>
                           <p>Rapidly assess land investment value, generate multiple development schemes, improve
@@ -158,7 +172,9 @@
                       </div>
                   </div>
                   <div class="case-card">
-                      <div class="case-image">🏛️</div>
+                    <div class="case-image">
+                        <img class="case-image-item" src="../assets/government_PhotoGrid.png"></img>
+                      </div>
                       <div class="case-content">
                           <h3 class="case-title">Government Planning Departments</h3>
                           <p>Rapid generation and comparison of urban planning schemes, visualization for public
@@ -166,7 +182,9 @@
                       </div>
                   </div>
                   <div class="case-card">
-                      <div class="case-image">🎨</div>
+                    <div class="case-image">
+                        <img class="case-image-item" src="../assets/architecture_PhotoGrid.png"></img>
+                      </div>
                       <div class="case-content">
                           <h3 class="case-title">Architectural Designers</h3>
                           <p>Rapid visualization of conceptual designs, more intuitive client communication,
@@ -311,6 +329,12 @@ body {
   font-size: 1.5rem;
   font-weight: bold;
   color: #ff6b35;
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 30px;
 }
 
 .nav-links {
@@ -528,8 +552,14 @@ body {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
+.feature-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .feature-icon {
-  font-size: 3rem;
+  height: 100px;
   margin-bottom: 1rem;
 }
 
@@ -572,6 +602,9 @@ body {
   justify-content: center;
   color: white;
   font-size: 2rem;
+}
+.case-image-item {
+  height: 150px;
 }
 
 .case-content {

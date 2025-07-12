@@ -244,19 +244,13 @@ onUnmounted(() => {
 
 <style scoped>
 .fullscreen-comparison-carousel {
+  height: 690px; /* 固定高度 */
   position: relative;
-  width: 100vw;
-  height: 100vh;
-  min-height: calc(100vh - 80px);
-  height: auto;
-  margin-left: calc(-50vw + 50%);
-  overflow: hidden; /* 为导航栏留出空间 */
+  overflow: visible; /* 改为visible确保导航栏可见 */
 }
 
 .carousel-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  height: calc(100% - 80px); /* 为导航栏留出空间 */
 }
 
 .comparison-item {
@@ -283,7 +277,7 @@ onUnmounted(() => {
 .image-wrapper {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 80px); /* 为导航栏留出空间 */
   background: #f0f0f0;
   overflow: hidden;
 }
@@ -350,7 +344,7 @@ onUnmounted(() => {
 /* 轮播导航 - 放在图片内部下方 */
 .carousel-nav {
   position: absolute;
-  bottom: 40px;
+  top: 600px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -406,6 +400,16 @@ onUnmounted(() => {
 .nav-dots button.active {
   background: white;
   transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+  .fullscreen-comparison-carousel {
+    height: 500px; /* 移动端适当降低高度 */
+  }
+  
+  .image-wrapper {
+    height: calc(100% - 60px); /* 移动端减少导航栏空间 */
+  }
 }
 
 /* 响应式调整 */

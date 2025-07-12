@@ -2,7 +2,7 @@
     <div class="bg-[#E3E3E3] pt-12">
         <header class="header">
           <nav class="nav container">
-              <div @click="onLogoClick" class="logo">🏠 ArchiFuture AI</div>
+              <div @click="onLogoClick" class="logo"><img class="logo-img" src="../assets/logo.jpeg" alt="" /> ArchiFuture AI</div>
           </nav>
       </header>
         <div class="conversion-container">
@@ -237,6 +237,9 @@ const reproduceImg = () => {
   font-size: 1.5rem;
   font-weight: bold;
   color: #ff6b35;
+}
+.logo-img {
+  height: 30px;
 }
 .conversion-container {
     max-width: 1200px;
