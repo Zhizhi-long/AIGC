@@ -41,7 +41,7 @@
                       </div>
                   </div>
 
-                  <a href="#demo" class="cta-button" style="font-size: 1.1rem; padding: 1rem 2rem;">Experience Demo
+                  <a href="/architectural-render-n" class="cta-button" style="font-size: 1.1rem; padding: 1rem 2rem;">Experience Demo
                       Now</a>
               </div>
           </div>
@@ -333,7 +333,7 @@ body {
 .slider-container {
   width: 100vw;
   margin-left: calc(-50vw + 50%); /* 抵消容器的padding */
-  margin-top: 88px; /* 为固定导航栏留出空间 */
+  margin-top: 80px; /* 为固定导航栏留出空间 */
   overflow: hidden;
   position: relative;
 }
