@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { onMounted } from 'vue'
-import { RouterLink, RouterView } from 'vue-router'
-import NavbarElement from '@/components/NavbarElement.vue'
+import { RouterView } from 'vue-router'
 
 const { locale } = useI18n()
 
@@ -14,15 +13,6 @@ onMounted(() => {
     locale.value = savedLang
     return
   }
-  
-  // 自动检测浏览器语言
-  const browserLang = navigator.language || navigator.userLanguage
-  if (browserLang.startsWith('zh')) {
-    locale.value = 'zh'
-  } else {
-    locale.value = 'en'
-  }
-  console.log(locale.value)
 })
 </script>
 
