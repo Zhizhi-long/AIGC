@@ -13,16 +13,14 @@
                 <div class="left-section">
                     <!-- 上传区域 -->
                     <div class="upload-section">
-                        <h2>draft Images</h2>
+                        <h2>draft Image</h2>
                         <div class="upload-box">
-                            <UploadImage v-model="imageUrl" placeholderText="点击或拖拽上传图片" :size="'300px'"></UploadImage>
+                            <UploadImage v-model="imageUrl" placeholderText="Click or drag to upload the picture" :size="'300px'"></UploadImage>
                         </div>
                     </div>
                     <div class="controls-section">
                         <div class="style-selection">
                             <div class="flex gap-1">
-
-
                                 <h3>Style</h3>
                                 <div class="tooltip-container">
                                     <svg class="question-icon" viewBox="0 0 24 24" @mouseenter="showTooltip = true"
@@ -48,6 +46,16 @@
                             <div class="quantity-options">
                                 <button v-for="num in 4" :key="num" class="quantity-option"
                                     :class="{ active: quantity === num }" @click="selectQuantity(num)">
+                                    {{ num }}
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="quantity-selection">
+                            <h3>Building num</h3>
+                            <div class="quantity-options">
+                                <button v-for="num in 4" :key="num" class="quantity-option"
+                                    :class="{ active: building_num === num }" @click="selectBuilding(num)">
                                     {{ num }}
                                 </button>
                             </div>
@@ -103,7 +111,9 @@
                     </div>
 
                     <div class="result-display" v-else>
-                        <img :src="generatedResult" alt="3D Conversion Result">
+                        <div class="result-container">
+                            <img :src="generatedResult" alt="3D Conversion Result">
+                        </div>
                         <div class="bottom-btn-content">
                             <button class="reproduce-btn" @click="reproduceImg">
                                 Reproduce
@@ -115,6 +125,9 @@
                                     <path d="M5 18V20H19V18H5Z" fill="white" />
                                 </svg>
                                 Download
+                            </button>
+                            <button class="reproduce-btn" @click="generateVideo">
+                                Generate video
                             </button>
                         </div>
                     </div>
@@ -129,6 +142,7 @@ import { ref, computed } from 'vue'
 import UploadImage from '@/components/UploadImage.vue'
 import { architecturalRenderApi } from '../apis/generator.js'
 import { useRouter } from 'vue-router'
+import resultImage from '../assets/test_output.png'
 
 const router = useRouter()
 
@@ -149,6 +163,7 @@ const selectedStyle = ref(0)
 
 // 数量选择
 const quantity = ref(1)
+const building_num = ref(1)
 
 // 隐私协议
 const agreedToPrivacy = ref(false)
@@ -167,6 +182,10 @@ const selectQuantity = (index) => {
     quantity.value = index
 }
 
+const selectBuilding = (index) => {
+    building_num.value = index
+}
+
 const onLogoClick = () =>{
     router.push('/')
 }
@@ -183,14 +202,18 @@ const generate3D = () => {
     const imageURL = imageUrl.value
     const type = selectedStyle.value
     const batchSize = quantity.value
-    architecturalRenderApi({ imageURL, type, batchSize })
-        .then((res) => {
-            generatedResult.value = Object.values(res || {})[0]
-            isLoading.value = false
-        })
-        .catch(() => {
-            isLoading.value = false
-        })
+    // architecturalRenderApi({ imageURL, type, batchSize })
+    //     .then((res) => {
+    //         generatedResult.value = Object.values(res || {})[0]
+    //         isLoading.value = false
+    //     })
+    //     .catch(() => {
+    //         isLoading.value = false
+    //     })
+    setTimeout(() => {
+        isLoading.value = false
+        generatedResult.value = resultImage
+    }, 600);
 }
 
 // 下载结果
@@ -205,6 +228,10 @@ const downloadResult = () => {
 
 const reproduceImg = () => {
     console.log(reproduceImg)
+}
+
+const generateVideo = () => {
+
 }
 </script>
 
@@ -237,6 +264,7 @@ const reproduceImg = () => {
   font-size: 1.5rem;
   font-weight: bold;
   color: #ff6b35;
+  display: flex;
 }
 .logo-img {
   height: 30px;
@@ -264,7 +292,7 @@ const reproduceImg = () => {
 .left-section {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 10px;
     flex: 0 0 30%;
 }
 
@@ -290,7 +318,7 @@ const reproduceImg = () => {
 .upload-box {
     border: 2px dashed #b39ddb;
     border-radius: 8px;
-    padding: 2rem;
+    padding: 10px;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -380,10 +408,18 @@ const reproduceImg = () => {
     justify-content: space-between;
 }
 
-.result-display img {
+.result-container {
+    padding: 10px;
+    align-items: center;
+    height: 100%;
+    display: flex;
+}
+
+.result-container img {
     width: 100%;
     height: auto;
     display: block;
+    border-radius: 10px;
 }
 
 .download-btn {
@@ -414,26 +450,27 @@ const reproduceImg = () => {
 
 .controls-section {
     background: white;
-    padding: 1.5rem;
+    padding: 16px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .style-selection {
-    margin-bottom: 1.5rem;
+    margin-bottom: 10px;
 }
 
 .style-selection h3,
 .quantity-selection h3 {
     color: #5e35b1;
-    margin-bottom: 0.5rem;
+    margin-bottom: 10px;
     display: flex;
 }
 
 .style-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    gap: 2px;
+    height: 85px;
 }
 
 .style-option {
@@ -460,7 +497,7 @@ const reproduceImg = () => {
 }
 
 .quantity-selection {
-    margin-bottom: 1.5rem;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -538,8 +575,8 @@ const reproduceImg = () => {
 }
 
 .question-icon {
-    width: 24px;
-    height: 24px;
+    width: 16px;
+    height: 16px;
     fill: #666;
     cursor: pointer;
     transition: fill 0.2s ease;
@@ -589,12 +626,12 @@ const reproduceImg = () => {
 }
 
 .quantity-option {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 30px;
     border: 2px solid #ddd;
-    border-radius: 8px;
+    border-radius: 20px;
     background: white;
-    font-size: 18px;
+    font-size: 15px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -608,9 +645,8 @@ const reproduceImg = () => {
 }
 
 .quantity-option.active {
-    border-color: #1890ff;
-    background-color: #e6f7ff;
-    color: #1890ff;
+    background-color: #b39ddb;
+    color: #5e35b1;
     font-weight: bold;
     box-shadow: 0 2px 8px rgba(24, 144, 255, 0.2);
 }
