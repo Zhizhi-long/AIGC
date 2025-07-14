@@ -248,25 +248,33 @@
 import { ref } from 'vue'
 
 import ImageComparisonSlider from '@/components/Slider.vue'
+import before1 from '../assets/before1.png'
+import after1 from '../assets/after1.png'
+import before2 from '../assets/before2.png'
+import after2 from '../assets/after2.png'
+import before3 from '../assets/before3.png'
+import after3 from '../assets/after3.png'
+import before4 from '../assets/before4.png'
+import after4 from '../assets/after4.png'
 
-const comparisonImages = [
+const comparisonImages = ref([
   {
-      before: 'https://img2.baidu.com/it/u=2814325636,3580236249&fm=253&fmt=auto&app=120&f=JPEG?w=1067&h=800',
-      after: 'https://pic.rmb.bdstatic.com/bjh/250307/dump/d53268dcfaeb945795a38be340098c8c.jpeg'
+      before: before1,
+      after: after1,
   },
   {
-      before: '@/assets/feature-image.webp',
-      after: '@/assets/feature-image.webp'
+    before: before2,
+    after: after2,
   },
   {
-      before: 'https://img2.baidu.com/it/u=2814325636,3580236249&fm=253&fmt=auto&app=120&f=JPEG?w=1067&h=800',
-      after: 'https://pic.rmb.bdstatic.com/bjh/250307/dump/d53268dcfaeb945795a38be340098c8c.jpeg'
+    before: before3,
+    after: after3,
   },
   {
-      before: '@/assets/feature-image.webp',
-      after: '@/assets/feature-image.webp'
+    before: before4,
+    after: after4,
   },
-]
+])
 
 // 示例响应式数据
 const stats = ref([
