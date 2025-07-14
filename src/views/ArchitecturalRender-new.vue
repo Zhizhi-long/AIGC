@@ -1,10 +1,11 @@
 <template>
     <div class="bg-[#E3E3E3] pt-12">
         <header class="header">
-          <nav class="nav container">
-              <div @click="onLogoClick" class="logo"><img class="logo-img" src="../assets/logo.jpeg" alt="" /> ArchiFuture AI</div>
-          </nav>
-      </header>
+            <nav class="nav container">
+                <div @click="onLogoClick" class="logo"><img class="logo-img" src="../assets/logo.jpeg" alt="" />
+                    ArchiFuture AI</div>
+            </nav>
+        </header>
         <div class="conversion-container">
             <div class="title">Architectural Draft to Render</div>
 
@@ -15,7 +16,8 @@
                     <div class="upload-section">
                         <h2>draft Image</h2>
                         <div class="upload-box">
-                            <UploadImage v-model="imageUrl" placeholderText="Click or drag to upload the picture" :size="'300px'"></UploadImage>
+                            <UploadImage v-model="imageUrl" placeholderText="Click or drag to upload the picture"
+                                :size="'300px'"></UploadImage>
                         </div>
                     </div>
                     <div class="controls-section">
@@ -54,7 +56,7 @@
                         <div class="quantity-selection">
                             <h3>Building num</h3>
                             <div class="quantity-options">
-                                <button v-for="num in 4" :key="num" class="quantity-option"
+                                <button v-for="num in ['single', 'few', 'many']" :key="num" class="num-option"
                                     :class="{ active: building_num === num }" @click="selectBuilding(num)">
                                     {{ num }}
                                 </button>
@@ -95,7 +97,7 @@
                         </div>
                     </div>
 
-                    <div class="result-placeholder" v-else-if="!generatedResult">
+                    <div class="result-placeholder" v-else-if="!generatedResults.length">
                         <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z"
@@ -112,7 +114,13 @@
 
                     <div class="result-display" v-else>
                         <div class="result-container">
-                            <img :src="generatedResult" alt="3D Conversion Result">
+                            <img class="result-img" :src="generatedResults[resultShowIndex]" alt="3D Conversion Result">
+                            <div class="result-list">
+                                <div class="result-option" v-for="(style, index) in generatedResults" :key="index"
+                                    :class="{ selected: resultShowIndex === index }" @click="setResultShowIndex(index)">
+                                    <img class="result-min-img" :src="generatedResults[index]" :alt="style.name">
+                                </div>
+                            </div>
                         </div>
                         <div class="bottom-btn-content">
                             <button class="reproduce-btn" @click="reproduceImg">
@@ -133,6 +141,34 @@
                     </div>
                 </div>
             </div>
+
+            <div v-if="videoShow" class="video-content">
+                <div class="centered" v-if="videoIsLoading">
+                    <h1>Cooking in progress..</h1>
+                    <div id="cooking">
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div id="area">
+                            <div id="sides">
+                                <div id="pan"></div>
+                                <div id="handle"></div>
+                            </div>
+                            <div id="pancake">
+                                <div id="pastry"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div v-else-if="videoSrc">
+                    <video class="video-item" controls :src="videoSrc" width="600">
+                        您的浏览器不支持 HTML5 视频
+                    </video>
+                </div>
+
+            </div>
         </div>
     </div>
 </template>
@@ -143,6 +179,7 @@ import UploadImage from '@/components/UploadImage.vue'
 import { architecturalRenderApi } from '../apis/generator.js'
 import { useRouter } from 'vue-router'
 import resultImage from '../assets/test_output.png'
+import videoAsset from '../assets/test.mp4'
 
 const router = useRouter()
 
@@ -151,6 +188,7 @@ const uploadedFiles = ref([])
 const isLoading = ref(false)
 
 const imageUrl = ref('')
+const videoSrc = ref(null)
 
 // 样式选项
 const styleOptions = ref([
@@ -163,15 +201,18 @@ const selectedStyle = ref(0)
 
 // 数量选择
 const quantity = ref(1)
-const building_num = ref(1)
+const building_num = ref('single')
 
 // 隐私协议
 const agreedToPrivacy = ref(false)
 
 // 生成结果
-const generatedResult = ref(null)
+const generatedResults = ref([])
+const resultShowIndex = ref(0)
 
 const showTooltip = ref(false)
+const videoShow = ref(false)
+const videoIsLoading = ref(false)
 
 // 选择样式
 const selectStyle = (index) => {
@@ -182,11 +223,15 @@ const selectQuantity = (index) => {
     quantity.value = index
 }
 
+const setResultShowIndex = (index) => {
+    resultShowIndex.value = index
+}
+
 const selectBuilding = (index) => {
     building_num.value = index
 }
 
-const onLogoClick = () =>{
+const onLogoClick = () => {
     router.push('/')
 }
 
@@ -198,7 +243,7 @@ const canGenerate = computed(() => {
 // 生成3D结果
 const generate3D = () => {
     isLoading.value = true
-    console.log(imageUrl.value, selectedStyle.value, quantity.value )
+    console.log(imageUrl.value, selectedStyle.value, quantity.value)
     const imageURL = imageUrl.value
     const type = selectedStyle.value
     const batchSize = quantity.value
@@ -212,8 +257,8 @@ const generate3D = () => {
     //     })
     setTimeout(() => {
         isLoading.value = false
-        generatedResult.value = resultImage
-    }, 600);
+        generatedResults.value = [resultImage, resultImage, resultImage]
+    }, 1200);
 }
 
 // 下载结果
@@ -231,44 +276,51 @@ const reproduceImg = () => {
 }
 
 const generateVideo = () => {
-
+    videoShow.value = true
+    videoIsLoading.value = true
+    setTimeout(() => {
+        videoIsLoading.value = false
+        videoSrc.value = videoAsset
+    }, 2000);
 }
 </script>
 
 <style scoped>
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 /* Header */
 .header {
-  background: rgba(13, 13, 75, 0.95);
-  color: white;
-  padding: 1rem 0;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
-  backdrop-filter: blur(10px);
+    background: rgba(13, 13, 75, 0.95);
+    color: white;
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
 }
 
 .nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #ff6b35;
-  display: flex;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff6b35;
+    display: flex;
 }
+
 .logo-img {
-  height: 30px;
+    height: 30px;
 }
+
 .conversion-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -413,13 +465,21 @@ const generateVideo = () => {
     align-items: center;
     height: 100%;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.result-container img {
+.result-img {
     width: 100%;
     height: auto;
     display: block;
     border-radius: 10px;
+}
+
+.result-min-img {
+    height: 100%;
+    width: auto;
+    display: block;
 }
 
 .download-btn {
@@ -479,6 +539,30 @@ const generateVideo = () => {
     overflow: hidden;
     cursor: pointer;
     transition: all 0.3s ease;
+}
+
+.result-list {
+    display: flex;
+    margin-top: 10px;
+}
+
+.result-option {
+    border: 2px solid #d1c4e9;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 50px;
+    width: 50px;
+}
+
+.result-option.selected {
+    border-color: #5e35b1;
+    box-shadow: 0 0 0 2px #b39ddb;
+}
+
+.result-option:hover {
+    border-color: #7e57c2;
 }
 
 .style-option:hover {
@@ -649,6 +733,45 @@ const generateVideo = () => {
     color: #5e35b1;
     font-weight: bold;
     box-shadow: 0 2px 8px rgba(24, 144, 255, 0.2);
+}
+
+.num-option {
+    width: 60px;
+    height: 30px;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    background: white;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.num-option:hover {
+    border-color: #aaa;
+    transform: translateY(-2px);
+}
+
+.num-option.active {
+    background-color: #b39ddb;
+    color: #5e35b1;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(24, 144, 255, 0.2);
+}
+
+.video-content {
+    width: 100%;
+    height: auto;
+    background: white;
+    margin-top: 10px;
+    border-radius: 12px;
+}
+
+.video-item {
+    width: 100%;
+    height: auto;
 }
 
 @media (max-width: 768px) {
