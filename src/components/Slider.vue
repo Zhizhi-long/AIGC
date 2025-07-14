@@ -244,7 +244,7 @@ onUnmounted(() => {
 
 <style scoped>
 .fullscreen-comparison-carousel {
-  height: 690px; /* 固定高度 */
+  height: 90vh; /* 固定高度 */
   position: relative;
   overflow: visible; /* 改为visible确保导航栏可见 */
 }

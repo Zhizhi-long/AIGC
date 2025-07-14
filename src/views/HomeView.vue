@@ -307,6 +307,7 @@ body {
   line-height: 1.6;
   color: #333;
   font-weight: 400;
+  background: linear-gradient(135deg, #0d0d4b 0%, #1a1a6b 50%, #2d2d8f 100%);
 }
 
 .container {
@@ -363,11 +364,13 @@ body {
 
 /* 添加以下样式 */
 .slider-container {
-  width: 100vw;
-  margin-left: calc(-50vw + 50%); /* 抵消容器的padding */
-  margin-top: 80px; /* 为固定导航栏留出空间 */
+  width: 70%; /* 调整为需要的宽度百分比或固定值 */
+  max-width: 1200px; /* 可选：添加最大宽度限制 */
   overflow: hidden;
   position: relative;
+  left: 50%; /* 配合transform实现精确居中 */
+  transform: translateX(-50%); /* 向左平移自身宽度的50% */
+  margin-top: 30px;
 }
 
 /* 确保ImageComparisonSlider组件内部元素也全宽 */
