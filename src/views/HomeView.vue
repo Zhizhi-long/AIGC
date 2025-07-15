@@ -1,245 +1,246 @@
 <template>
   <div class="app">
-      <!-- Header -->
-      <header class="header">
-          <nav class="nav container">
-              <div class="logo"> <img class="logo-img" src="../assets/logo.jpeg" alt="" /> ArchiFuture AI</div>
-              <ul class="nav-links">
-                  <li><a href="#demo">Product Demo</a></li>
-                  <li><a href="#features">Core Features</a></li>
-                  <li><a href="#cases">Use Cases</a></li>
-                  <li><a href="#technology">Technology</a></li>
-              </ul>
-              <a href="/architectural-render-n" class="cta-button">Try for Free</a>
-          </nav>
-      </header>
-      <div class="slider-container">
-          <ImageComparisonSlider :items="comparisonImages" />
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav container">
+        <div class="logo"> <img class="logo-img" src="../assets/logo.jpeg" alt="" /> ArchiFuture AI</div>
+        <ul class="nav-links">
+          <li><a href="#demo">Product Demo</a></li>
+          <li><a href="#features">Core Features</a></li>
+          <li><a href="#cases">Use Cases</a></li>
+          <li><a href="#technology">Technology</a></li>
+        </ul>
+        <a href="/architectural-render-n" class="cta-button">Try for Free</a>
+      </nav>
+    </header>
+    <div class="slider-container">
+      <ImageComparisonSlider :items="comparisonImages" />
+    </div>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>AI-Powered Architectural Revolution</h1>
+          <p class="hero-subtitle">From concept to visualization in 15 minutes instead of 20 days. Intelligent
+            land optimization and one-click professional 3D rendering for the future of architectural
+            planning.</p>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-number">99%</div>
+              <div class="stat-label">Workflow Acceleration</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">80%</div>
+              <div class="stat-label">Cost Reduction</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">35%</div>
+              <div class="stat-label">Land Utilization Boost</div>
+            </div>
+          </div>
+
+          <a href="/architectural-render-n" class="cta-button" style="font-size: 1.1rem; padding: 1rem 2rem;">Experience
+            Demo
+            Now</a>
+        </div>
       </div>
+    </section>
 
-      <!-- Hero Banner -->
-      <section class="hero">
-          <div class="container">
-              <div class="hero-content">
-                  <h1>AI-Powered Architectural Revolution</h1>
-                  <p class="hero-subtitle">From concept to visualization in 15 minutes instead of 20 days. Intelligent
-                      land optimization and one-click professional 3D rendering for the future of architectural
-                      planning.</p>
-
-                  <div class="hero-stats">
-                      <div class="stat-item">
-                          <div class="stat-number">99%</div>
-                          <div class="stat-label">Workflow Acceleration</div>
-                      </div>
-                      <div class="stat-item">
-                          <div class="stat-number">80%</div>
-                          <div class="stat-label">Cost Reduction</div>
-                      </div>
-                      <div class="stat-item">
-                          <div class="stat-number">35%</div>
-                          <div class="stat-label">Land Utilization Boost</div>
-                      </div>
-                  </div>
-
-                  <a href="/architectural-render-n" class="cta-button" style="font-size: 1.1rem; padding: 1rem 2rem;">Experience Demo
-                      Now</a>
-              </div>
+    <!-- Technology -->
+    <section id="technology" class="technology">
+      <div class="container">
+        <h2 class="technology-title">Technical Advantages</h2>
+        <div class="tech-grid">
+          <div class="tech-item">
+            <h4><strong>🤖 Core AI Algorithms</strong></h4>
+            <p>Stable Diffusion + ControlNet<br>Meta SAM + CLIP + Faiss<br>Siamese Networks<br>Latent
+              Diffusion Transformer</p>
           </div>
-      </section>
-
-      <!-- Technology -->
-      <section id="technology" class="technology">
-          <div class="container">
-              <h2 class="technology-title">Technical Advantages</h2>
-              <div class="tech-grid">
-                  <div class="tech-item">
-                      <h4><strong>🤖 Core AI Algorithms</strong></h4>
-                      <p>Stable Diffusion + ControlNet<br>Meta SAM + CLIP + Faiss<br>Siamese Networks<br>Latent
-                          Diffusion Transformer</p>
-                  </div>
-                  <div class="tech-item">
-                      <h4><strong>⚡ High-Performance Computing</strong></h4>
-                      <p>GPU Cluster Parallel Processing<br>Load Balancing Gateway<br>30-60s Rendering Complete</p>
-                  </div>
-                  <div class="tech-item">
-                      <h4><strong>📊 Data Foundatio</strong>n</h4>
-                      <p>10+ CCF-A Conference Papers<br>5+ Proprietary LoRA Models<br>1000+ Building Prototype
-                          Database</p>
-                  </div>
-                  <div class="tech-item">
-                      <h4><strong>🛡️ Enterprise-Grade Security</strong></h4>
-                      <p>End-to-End Encryption<br>Private Cloud Deployment<br>Isolated Server Architecture</p>
-                  </div>
-              </div>
+          <div class="tech-item">
+            <h4><strong>⚡ High-Performance Computing</strong></h4>
+            <p>GPU Cluster Parallel Processing<br>Load Balancing Gateway<br>30-60s Rendering Complete</p>
           </div>
-      </section>
-
-      <!-- Demo Section -->
-      <section id="demo" class="demo-section">
-          <div class="container">
-              <h2 class="section-title">Product Demonstration</h2>
-              <div class="demo-container">
-                  <div class="demo-video">
-                      <div>AI Land Planning Demo Video</div>
-                  </div>
-                  <div class="demo-text">
-                      <h3>From Photo to Planning Solution, One Click Complete</h3>
-                      <p>Upload your land photos and input basic parameters. Our AI will generate for you within
-                          minutes:</p>
-                      <ul class="demo-features">
-                          <li>Intelligent land segmentation and layout optimization</li>
-                          <li>Regulatory-compliant architectural solution matching</li>
-                          <li>Real-time commercial value calculation</li>
-                          <li>Multi-style 3D visualization rendering</li>
-                          <li>Detailed investment return analysis</li>
-                      </ul>
-                      <a href="#" class="cta-button">Watch Full Demo</a>
-                  </div>
-              </div>
+          <div class="tech-item">
+            <h4><strong>📊 Data Foundatio</strong>n</h4>
+            <p>10+ CCF-A Conference Papers<br>5+ Proprietary LoRA Models<br>1000+ Building Prototype
+              Database</p>
           </div>
-      </section>
-
-      <!-- Features -->
-      <section id="features" class="features">
-          <div class="container">
-              <h2 class="section-title">Core Features</h2>
-              <div class="features-grid">
-                  <div class="feature-card">
-                      <div class="feature-icon-container">
-                        <img class="feature-icon" src="../assets/AI-Powered-Planning.png" alt="">
-                      </div>
-                      <h3><strong>AI-Powered Planning</strong></h3>
-                      <p>Deep learning-based land segmentation algorithms automatically calculate optimal building
-                          layouts, ensuring regulatory compliance while maximizing commercial value.</p>
-                  </div>
-                  <div class="feature-card">
-                    <div class="feature-icon-container">
-                        <img class="feature-icon" src="../assets/One-Click-3D-Rendering_PhotoGrid.png" alt="">
-                      </div>
-                      <h3><strong>One-Click 3D Rendering</strong></h3>
-                      <p>Professional-grade 3D visualization engine supporting multiple architectural styles, from
-                          modern minimalism to neoclassicism, generating high-quality renders in 15 seconds.</p>
-                  </div>
-                  <div class="feature-card">
-                    <div class="feature-icon-container">
-                        <img class="feature-icon" src="../assets/Real-Time-Value-Calculation_PhotoGrid.png" alt="">
-                      </div>
-                      <h3><strong>Real-Time Value Calculation</strong></h3>
-                      <p>Integrated market data and construction cost models provide real-time ROI calculations,
-                          helping developers make more informed investment decisions.</p>
-                  </div>
-                  <div class="feature-card">
-                    <div class="feature-icon-container">
-                        <img class="feature-icon" src="../assets/Green-Building-Optimization.png" alt="">
-                      </div>
-                      <h3><strong>Green Building Optimization</strong></h3>
-                      <p>Built-in BEAM Plus and LEED certification standards automatically optimize green ratios and
-                          sustainable design, facilitating green building certification.</p>
-                  </div>
-                  <div class="feature-card">
-                    <div class="feature-icon-container">
-                        <img class="feature-icon" src="../assets/Rapid-Iteration.png" alt="">
-                      </div>
-                      <h3><strong>Rapid Iteration</strong></h3>
-                      <p>Traditional planning takes 20 days, we need only 15 minutes. Support real-time parameter
-                          adjustments with instant preview of different scenarios and revenue comparisons.</p>
-                  </div>
-                  <div class="feature-card">
-                    <div class="feature-icon-container">
-                        <img class="feature-icon" src="../assets/Seamless-Integration.png" alt="">
-                      </div>
-                      <h3><strong>Seamless Integration</strong></h3>
-                      <p>Support API integration with mainstream design software like AutoCAD and Revit, no need to
-                          change existing workflows, easy to get started.</p>
-                  </div>
-              </div>
+          <div class="tech-item">
+            <h4><strong>🛡️ Enterprise-Grade Security</strong></h4>
+            <p>End-to-End Encryption<br>Private Cloud Deployment<br>Isolated Server Architecture</p>
           </div>
-      </section>
+        </div>
+      </div>
+    </section>
 
-      <!-- Use Cases -->
-      <section id="cases" class="use-cases">
-          <div class="container">
-              <h2 class="section-title">Application Scenarios</h2>
-              <div class="cases-grid">
-                  <div class="case-card">
-                      <div class="case-image">
-                        <img class="case-image-item" src="../assets/Real-estate-developer_PhotoGrid.png"></img>
-                      </div>
-                      <div class="case-content">
-                          <h3 class="case-title"><strong>Real Estate Developers</strong></h3>
-                          <p>Rapidly assess land investment value, generate multiple development schemes, improve
-                              early-stage decision efficiency, and reduce investment risks.</p>
-                      </div>
-                  </div>
-                  <div class="case-card">
-                    <div class="case-image">
-                        <img class="case-image-item" src="../assets/government_PhotoGrid.png"></img>
-                      </div>
-                      <div class="case-content">
-                          <h3 class="case-title"><strong>Government Planning Departments</strong></h3>
-                          <p>Rapid generation and comparison of urban planning schemes, visualization for public
-                              consultation, improving planning approval efficiency and transparency.</p>
-                      </div>
-                  </div>
-                  <div class="case-card">
-                    <div class="case-image">
-                        <img class="case-image-item" src="../assets/architecture_PhotoGrid.png"></img>
-                      </div>
-                      <div class="case-content">
-                          <h3 class="case-title"><strong>Architectural Designers</strong></h3>
-                          <p>Rapid visualization of conceptual designs, more intuitive client communication,
-                              significantly shortening design cycles and enhancing client satisfaction.</p>
-                      </div>
-                  </div>
-              </div>
+    <!-- Demo Section -->
+    <section id="demo" class="demo-section">
+      <div class="container">
+        <h2 class="section-title">Product Demonstration</h2>
+        <div class="demo-container">
+          <div class="demo-video">
+            <video ref="videoPlayer" autoplay muted loop playsinline :src="videoSrc" class="silent-video"></video>
           </div>
-      </section>
+          <div class="demo-text">
+            <h3>From Photo to Planning Solution, One Click Complete</h3>
+            <p>Upload your land photos and input basic parameters. Our AI will generate for you within
+              minutes:</p>
+            <ul class="demo-features">
+              <li>Intelligent land segmentation and layout optimization</li>
+              <li>Regulatory-compliant architectural solution matching</li>
+              <li>Real-time commercial value calculation</li>
+              <li>Multi-style 3D visualization rendering</li>
+              <li>Detailed investment return analysis</li>
+            </ul>
+            <a href="#" class="cta-button">Watch Full Demo</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <!-- CTA Section -->
-      <section class="cta-section">
-          <div class="container">
-              <h2>Ready to Revolutionize Your Architectural Planning Process?</h2>
-              <p>Join the leading architecture firms and developers already using ArchiFuture AI</p>
-              <div class="cta-buttons">
-                  <a href="#" class="btn-primary">Start Free Trial</a>
-                  <a href="#" class="btn-secondary">Schedule Demo</a>
-              </div>
+    <!-- Features -->
+    <section id="features" class="features">
+      <div class="container">
+        <h2 class="section-title">Core Features</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon-container">
+              <img class="feature-icon" src="../assets/AI-Powered-Planning.png" alt="">
+            </div>
+            <h3><strong>AI-Powered Planning</strong></h3>
+            <p>Deep learning-based land segmentation algorithms automatically calculate optimal building
+              layouts, ensuring regulatory compliance while maximizing commercial value.</p>
           </div>
-      </section>
+          <div class="feature-card">
+            <div class="feature-icon-container">
+              <img class="feature-icon" src="../assets/One-Click-3D-Rendering_PhotoGrid.png" alt="">
+            </div>
+            <h3><strong>One-Click 3D Rendering</strong></h3>
+            <p>Professional-grade 3D visualization engine supporting multiple architectural styles, from
+              modern minimalism to neoclassicism, generating high-quality renders in 15 seconds.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-container">
+              <img class="feature-icon" src="../assets/Real-Time-Value-Calculation_PhotoGrid.png" alt="">
+            </div>
+            <h3><strong>Real-Time Value Calculation</strong></h3>
+            <p>Integrated market data and construction cost models provide real-time ROI calculations,
+              helping developers make more informed investment decisions.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-container">
+              <img class="feature-icon" src="../assets/Green-Building-Optimization.png" alt="">
+            </div>
+            <h3><strong>Green Building Optimization</strong></h3>
+            <p>Built-in BEAM Plus and LEED certification standards automatically optimize green ratios and
+              sustainable design, facilitating green building certification.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-container">
+              <img class="feature-icon" src="../assets/Rapid-Iteration.png" alt="">
+            </div>
+            <h3><strong>Rapid Iteration</strong></h3>
+            <p>Traditional planning takes 20 days, we need only 15 minutes. Support real-time parameter
+              adjustments with instant preview of different scenarios and revenue comparisons.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-container">
+              <img class="feature-icon" src="../assets/Seamless-Integration.png" alt="">
+            </div>
+            <h3><strong>Seamless Integration</strong></h3>
+            <p>Support API integration with mainstream design software like AutoCAD and Revit, no need to
+              change existing workflows, easy to get started.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <!-- Footer -->
-      <footer class="footer">
-          <div class="container">
-              <div class="footer-content">
-                  <div class="footer-section">
-                      <h4>Product</h4>
-                      <a href="#">Features</a>
-                      <a href="#">Pricing Plans</a>
-                      <a href="#">API Documentation</a>
-                  </div>
-                  <div class="footer-section">
-                      <h4>Solutions</h4>
-                      <a href="#">Real Estate Development</a>
-                      <a href="#">Architectural Design</a>
-                      <a href="#">Urban Planning</a>
-                  </div>
-                  <div class="footer-section">
-                      <h4>Support</h4>
-                      <a href="#">Help Center</a>
-                      <a href="#">Technical Support</a>
-                      <a href="#">Contact Us</a>
-                  </div>
-                  <div class="footer-section">
-                      <h4>Company</h4>
-                      <a href="#">About Us</a>
-                      <a href="#">Our Team</a>
-                      <a href="#">Partners</a>
-                  </div>
-              </div>
-              <hr style="border: 1px solid rgba(255,255,255,0.2); margin: 2rem 0;">
-              <p>&copy; 2025 ArchiFuture AI. All rights reserved.</p>
+    <!-- Use Cases -->
+    <section id="cases" class="use-cases">
+      <div class="container">
+        <h2 class="section-title">Application Scenarios</h2>
+        <div class="cases-grid">
+          <div class="case-card">
+            <div class="case-image">
+              <img class="case-image-item" src="../assets/Real-estate-developer_PhotoGrid.png"></img>
+            </div>
+            <div class="case-content">
+              <h3 class="case-title"><strong>Real Estate Developers</strong></h3>
+              <p>Rapidly assess land investment value, generate multiple development schemes, improve
+                early-stage decision efficiency, and reduce investment risks.</p>
+            </div>
           </div>
-      </footer>
+          <div class="case-card">
+            <div class="case-image">
+              <img class="case-image-item" src="../assets/government_PhotoGrid.png"></img>
+            </div>
+            <div class="case-content">
+              <h3 class="case-title"><strong>Government Planning Departments</strong></h3>
+              <p>Rapid generation and comparison of urban planning schemes, visualization for public
+                consultation, improving planning approval efficiency and transparency.</p>
+            </div>
+          </div>
+          <div class="case-card">
+            <div class="case-image">
+              <img class="case-image-item" src="../assets/architecture_PhotoGrid.png"></img>
+            </div>
+            <div class="case-content">
+              <h3 class="case-title"><strong>Architectural Designers</strong></h3>
+              <p>Rapid visualization of conceptual designs, more intuitive client communication,
+                significantly shortening design cycles and enhancing client satisfaction.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>Ready to Revolutionize Your Architectural Planning Process?</h2>
+        <p>Join the leading architecture firms and developers already using ArchiFuture AI</p>
+        <div class="cta-buttons">
+          <a href="#" class="btn-primary">Start Free Trial</a>
+          <a href="#" class="btn-secondary">Schedule Demo</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>Product</h4>
+            <a href="#">Features</a>
+            <a href="#">Pricing Plans</a>
+            <a href="#">API Documentation</a>
+          </div>
+          <div class="footer-section">
+            <h4>Solutions</h4>
+            <a href="#">Real Estate Development</a>
+            <a href="#">Architectural Design</a>
+            <a href="#">Urban Planning</a>
+          </div>
+          <div class="footer-section">
+            <h4>Support</h4>
+            <a href="#">Help Center</a>
+            <a href="#">Technical Support</a>
+            <a href="#">Contact Us</a>
+          </div>
+          <div class="footer-section">
+            <h4>Company</h4>
+            <a href="#">About Us</a>
+            <a href="#">Our Team</a>
+            <a href="#">Partners</a>
+          </div>
+        </div>
+        <hr style="border: 1px solid rgba(255,255,255,0.2); margin: 2rem 0;">
+        <p>&copy; 2025 ArchiFuture AI. All rights reserved.</p>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -256,11 +257,15 @@ import before3 from '../assets/before3.png'
 import after3 from '../assets/after3.png'
 import before4 from '../assets/before4.png'
 import after4 from '../assets/after4.png'
+import videoAsset from '../assets/test.mp4'
+
+const videoSrc = ref(videoAsset)
+
 
 const comparisonImages = ref([
   {
-      before: before1,
-      after: after1,
+    before: before1,
+    after: after1,
   },
   {
     before: before2,
@@ -287,7 +292,7 @@ const stats = ref([
 const scrollToSection = (sectionId) => {
   const element = document.getElementById(sectionId)
   if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+    element.scrollIntoView({ behavior: 'smooth' })
   }
 }
 </script>
@@ -364,17 +369,21 @@ body {
 
 /* 添加以下样式 */
 .slider-container {
-  width: 70%; /* 调整为需要的宽度百分比或固定值 */
-  max-width: 1200px; /* 可选：添加最大宽度限制 */
+  width: 70%;
+  /* 调整为需要的宽度百分比或固定值 */
+  max-width: 1200px;
+  /* 可选：添加最大宽度限制 */
   overflow: hidden;
   position: relative;
-  left: 50%; /* 配合transform实现精确居中 */
-  transform: translateX(-50%); /* 向左平移自身宽度的50% */
+  left: 50%;
+  /* 配合transform实现精确居中 */
+  transform: translateX(-50%);
+  /* 向左平移自身宽度的50% */
   margin-top: 30px;
 }
 
 /* 确保ImageComparisonSlider组件内部元素也全宽 */
-.slider-container >>> .comparison-slider {
+.slider-container>>>.comparison-slider {
   width: 100%;
 }
 
@@ -492,7 +501,7 @@ body {
 
 .demo-video {
   background: #ddd;
-  height: 400px;
+  /* height: 400px; */
   border-radius: 15px;
   display: flex;
   align-items: center;
@@ -503,14 +512,14 @@ body {
   overflow: hidden;
 }
 
-.demo-video::before {
+/* .demo-video::before {
   content: '🎬';
   font-size: 3rem;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
+} */
 
 .demo-text h3 {
   font-size: 2rem;
@@ -614,6 +623,7 @@ body {
   color: white;
   font-size: 2rem;
 }
+
 .case-image-item {
   height: 150px;
 }
@@ -745,26 +755,26 @@ body {
 /* Responsive */
 @media (max-width: 768px) {
   .hero h1 {
-      font-size: 2.5rem;
+    font-size: 2.5rem;
   }
 
   .hero-stats {
-      flex-direction: column;
-      gap: 1rem;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   .demo-container {
-      grid-template-columns: 1fr;
-      gap: 2rem;
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
   .nav-links {
-      display: none;
+    display: none;
   }
 
   .cta-buttons {
-      flex-direction: column;
-      align-items: center;
+    flex-direction: column;
+    align-items: center;
   }
 }
 </style>
