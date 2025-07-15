@@ -1,8 +1,8 @@
 <template>
   <div class="fullscreen-comparison-carousel">
-    <div v-if="!imagesLoaded" class="skeleton-placeholder" />
+    <!-- <div v-if="!imagesLoaded" class="skeleton-placeholder" /> -->
     <!-- 轮播容器 -->
-    <div v-else class="carousel-container" ref="carousel">
+    <div class="carousel-container" ref="carousel">
       <!-- 每组对比图片 -->
       <div 
         v-for="(item, index) in items" 
