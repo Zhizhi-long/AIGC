@@ -85,7 +85,7 @@ const props = defineProps({
 
 const currentIndex = ref(0)
 const carousel = ref(null)
-const imageRatio = ref(16/9) // 默认16:9比例
+const imageRatio = ref(0.8) // 默认16:9比例
 const dividerPositions = ref([0])
 const autoPlayTimer = ref(null)
 const isHovered = ref(false)
@@ -169,7 +169,8 @@ const getDividerStyle = (index) => ({
 // 图片加载处理
 const handleImageLoad = (e) => {
   const img = e.target
-  imageRatio.value = img.naturalHeight / img.naturalWidth
+  // imageRatio.value = img.naturalHeight / img.naturalWidth
+  // console.log(img, imageRatio.value)
 }
 
 // 轮播导航
