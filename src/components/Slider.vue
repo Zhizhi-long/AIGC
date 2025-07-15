@@ -1,7 +1,8 @@
 <template>
   <div class="fullscreen-comparison-carousel">
+    <div v-if="!imagesLoaded" class="skeleton-placeholder" />
     <!-- 轮播容器 -->
-    <div class="carousel-container" ref="carousel">
+    <div v-else class="carousel-container" ref="carousel">
       <!-- 每组对比图片 -->
       <div 
         v-for="(item, index) in items" 
@@ -17,6 +18,7 @@
               class="image-before" 
               :src="item.before" 
               :style="getBeforeStyle(index)"
+              loading="lazy"
               @load="handleImageLoad"
             />
             
@@ -24,6 +26,7 @@
             <img 
               class="image-after" 
               :src="item.after"
+              loading="lazy"
               @load="handleImageLoad"
             />
             
@@ -76,7 +79,7 @@ const props = defineProps({
   },
   autoPlayInterval: {
     type: Number,
-    default: 5000 // 默认5秒自动切换
+    default: 10000 // 默认5秒自动切换
   }
 })
 
@@ -87,8 +90,30 @@ const dividerPositions = ref([0])
 const autoPlayTimer = ref(null)
 const isHovered = ref(false)
 
+const imagesLoaded = ref(false)
+
+const preloadImages = async () => {
+  const loadPromises = props.items.flatMap(item => [
+    loadImage(item.before),
+    loadImage(item.after)
+  ])
+  
+  await Promise.all(loadPromises)
+  imagesLoaded.value = true
+}
+
+const loadImage = (src) => {
+  return new Promise((resolve) => {
+    const img = new Image()
+    img.src = src
+    img.onload = resolve
+    img.onerror = resolve // 即使失败也继续
+  })
+}
+
 // 初始化分割线位置和动画
 onMounted(() => {
+  preloadImages()
   // 初始所有分割线在100%位置(最右边)
   dividerPositions.value = props.items.map(() => 100)
   
@@ -249,6 +274,14 @@ onUnmounted(() => {
   overflow: visible; /* 改为visible确保导航栏可见 */
 }
 
+.skeleton-placeholder {
+  height: 90vh; /* 固定高度 */
+  width: 100%;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
 .carousel-container {
   height: calc(100% - 80px); /* 为导航栏留出空间 */
 }
@@ -277,7 +310,6 @@ onUnmounted(() => {
 .image-wrapper {
   position: relative;
   width: 100%;
-  height: calc(100% - 80px); /* 为导航栏留出空间 */
   background: #f0f0f0;
   overflow: hidden;
 }

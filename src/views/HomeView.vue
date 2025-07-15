@@ -257,17 +257,6 @@ import after3 from '../assets/after3.png'
 import before4 from '../assets/before4.png'
 import after4 from '../assets/after4.png'
 
-// 在组件挂载时预加载所有图片
-import { onMounted } from 'vue'
-
-const preloadImages = (items) => {
-  items.forEach(item => {
-    const img = new Image()
-    img.src = item.before
-    img.src = item.after
-  })
-}
-
 const comparisonImages = ref([
   {
       before: before1,
@@ -286,10 +275,6 @@ const comparisonImages = ref([
     after: after4,
   },
 ])
-
-onMounted(() => {
-  preloadImages(comparisonImages.value) // 替换为你的轮播图数据
-})
 
 // 示例响应式数据
 const stats = ref([
