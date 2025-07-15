@@ -94,7 +94,6 @@
               <li>Multi-style 3D visualization rendering</li>
               <li>Detailed investment return analysis</li>
             </ul>
-            <a href="#" class="cta-button">Watch Full Demo</a>
           </div>
         </div>
       </div>
