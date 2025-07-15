@@ -53,21 +53,21 @@
               <h2 class="technology-title">Technical Advantages</h2>
               <div class="tech-grid">
                   <div class="tech-item">
-                      <h4>🤖 Core AI Algorithms</h4>
+                      <h4><strong>🤖 Core AI Algorithms</strong></h4>
                       <p>Stable Diffusion + ControlNet<br>Meta SAM + CLIP + Faiss<br>Siamese Networks<br>Latent
                           Diffusion Transformer</p>
                   </div>
                   <div class="tech-item">
-                      <h4>⚡ High-Performance Computing</h4>
+                      <h4><strong>⚡ High-Performance Computing</strong></h4>
                       <p>GPU Cluster Parallel Processing<br>Load Balancing Gateway<br>30-60s Rendering Complete</p>
                   </div>
                   <div class="tech-item">
-                      <h4>📊 Data Foundation</h4>
+                      <h4><strong>📊 Data Foundatio</strong>n</h4>
                       <p>10+ CCF-A Conference Papers<br>5+ Proprietary LoRA Models<br>1000+ Building Prototype
                           Database</p>
                   </div>
                   <div class="tech-item">
-                      <h4>🛡️ Enterprise-Grade Security</h4>
+                      <h4><strong>🛡️ Enterprise-Grade Security</strong></h4>
                       <p>End-to-End Encryption<br>Private Cloud Deployment<br>Isolated Server Architecture</p>
                   </div>
               </div>
@@ -108,7 +108,7 @@
                       <div class="feature-icon-container">
                         <img class="feature-icon" src="../assets/AI-Powered-Planning.png" alt="">
                       </div>
-                      <h3>AI-Powered Planning</h3>
+                      <h3><strong>AI-Powered Planning</strong></h3>
                       <p>Deep learning-based land segmentation algorithms automatically calculate optimal building
                           layouts, ensuring regulatory compliance while maximizing commercial value.</p>
                   </div>
@@ -116,7 +116,7 @@
                     <div class="feature-icon-container">
                         <img class="feature-icon" src="../assets/One-Click-3D-Rendering_PhotoGrid.png" alt="">
                       </div>
-                      <h3>One-Click 3D Rendering</h3>
+                      <h3><strong>One-Click 3D Rendering</strong></h3>
                       <p>Professional-grade 3D visualization engine supporting multiple architectural styles, from
                           modern minimalism to neoclassicism, generating high-quality renders in 15 seconds.</p>
                   </div>
@@ -124,7 +124,7 @@
                     <div class="feature-icon-container">
                         <img class="feature-icon" src="../assets/Real-Time-Value-Calculation_PhotoGrid.png" alt="">
                       </div>
-                      <h3>Real-Time Value Calculation</h3>
+                      <h3><strong>Real-Time Value Calculation</strong></h3>
                       <p>Integrated market data and construction cost models provide real-time ROI calculations,
                           helping developers make more informed investment decisions.</p>
                   </div>
@@ -132,7 +132,7 @@
                     <div class="feature-icon-container">
                         <img class="feature-icon" src="../assets/Green-Building-Optimization.png" alt="">
                       </div>
-                      <h3>Green Building Optimization</h3>
+                      <h3><strong>Green Building Optimization</strong></h3>
                       <p>Built-in BEAM Plus and LEED certification standards automatically optimize green ratios and
                           sustainable design, facilitating green building certification.</p>
                   </div>
@@ -140,7 +140,7 @@
                     <div class="feature-icon-container">
                         <img class="feature-icon" src="../assets/Rapid-Iteration.png" alt="">
                       </div>
-                      <h3>Rapid Iteration</h3>
+                      <h3><strong>Rapid Iteration</strong></h3>
                       <p>Traditional planning takes 20 days, we need only 15 minutes. Support real-time parameter
                           adjustments with instant preview of different scenarios and revenue comparisons.</p>
                   </div>
@@ -148,7 +148,7 @@
                     <div class="feature-icon-container">
                         <img class="feature-icon" src="../assets/Seamless-Integration.png" alt="">
                       </div>
-                      <h3>Seamless Integration</h3>
+                      <h3><strong>Seamless Integration</strong></h3>
                       <p>Support API integration with mainstream design software like AutoCAD and Revit, no need to
                           change existing workflows, easy to get started.</p>
                   </div>
@@ -166,7 +166,7 @@
                         <img class="case-image-item" src="../assets/Real-estate-developer_PhotoGrid.png"></img>
                       </div>
                       <div class="case-content">
-                          <h3 class="case-title">Real Estate Developers</h3>
+                          <h3 class="case-title"><strong>Real Estate Developers</strong></h3>
                           <p>Rapidly assess land investment value, generate multiple development schemes, improve
                               early-stage decision efficiency, and reduce investment risks.</p>
                       </div>
@@ -176,7 +176,7 @@
                         <img class="case-image-item" src="../assets/government_PhotoGrid.png"></img>
                       </div>
                       <div class="case-content">
-                          <h3 class="case-title">Government Planning Departments</h3>
+                          <h3 class="case-title"><strong>Government Planning Departments</strong></h3>
                           <p>Rapid generation and comparison of urban planning schemes, visualization for public
                               consultation, improving planning approval efficiency and transparency.</p>
                       </div>
@@ -186,7 +186,7 @@
                         <img class="case-image-item" src="../assets/architecture_PhotoGrid.png"></img>
                       </div>
                       <div class="case-content">
-                          <h3 class="case-title">Architectural Designers</h3>
+                          <h3 class="case-title"><strong>Architectural Designers</strong></h3>
                           <p>Rapid visualization of conceptual designs, more intuitive client communication,
                               significantly shortening design cycles and enhancing client satisfaction.</p>
                       </div>
@@ -257,6 +257,17 @@ import after3 from '../assets/after3.png'
 import before4 from '../assets/before4.png'
 import after4 from '../assets/after4.png'
 
+// 在组件挂载时预加载所有图片
+import { onMounted } from 'vue'
+
+const preloadImages = (items) => {
+  items.forEach(item => {
+    const img = new Image()
+    img.src = item.before
+    img.src = item.after
+  })
+}
+
 const comparisonImages = ref([
   {
       before: before1,
@@ -275,6 +286,10 @@ const comparisonImages = ref([
     after: after4,
   },
 ])
+
+onMounted(() => {
+  preloadImages(comparisonImages.value) // 替换为你的轮播图数据
+})
 
 // 示例响应式数据
 const stats = ref([
