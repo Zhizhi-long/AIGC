@@ -115,12 +115,7 @@ const loadImage = (src) => {
 onMounted(() => {
   preloadImages()
   // 初始所有分割线在100%位置(最右边)
-  dividerPositions.value = props.items.map(() => 100)
-  
-  // 启动分割线动画
-  setTimeout(() => {
-    dividerPositions.value = props.items.map(() => 25) // 移动到25%位置(左边1/4处)
-  }, 100)
+  dividerPositions.value = props.items.map(() => 25)
   
   // 启动自动轮播
   startAutoPlay()
