@@ -93,12 +93,12 @@ const isHovered = ref(false)
 const imagesLoaded = ref(false)
 
 const preloadImages = async () => {
-  const loadPromises = props.items.flatMap(item => [
-    loadImage(item.before),
-    loadImage(item.after)
-  ])
+  const firstItem = props.items[currentIndex.value]
   
-  await Promise.all(loadPromises)
+  await Promise.all([
+    loadImage(firstItem.before),
+    loadImage(firstItem.after)
+  ])
   imagesLoaded.value = true
 }
 
