@@ -14,6 +14,12 @@ const router = createRouter({
       name: 'architectural-render-n',
       // @ts-ignore
       component: () => import('../views/ArchitecturalRender-new.vue')
+    },
+    {
+      path: '/architectural-render',
+      name: 'architectural-render',
+      // @ts-ignore
+      component: () => import('../views/ArchitecturalRender.vue')
     }
   ],
 })

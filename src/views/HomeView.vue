@@ -41,7 +41,7 @@
             </div>
           </div>
 
-          <a href="/architectural-render-n" class="cta-button" style="font-size: 1.1rem; padding: 1rem 2rem;">Experience
+          <a href="/architectural-render" class="cta-button" style="font-size: 1.1rem; padding: 1rem 2rem;">Experience
             Demo
             Now</a>
         </div>
