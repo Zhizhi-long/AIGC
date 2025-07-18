@@ -40,10 +40,13 @@
               <div class="stat-label">Land Utilization Boost</div>
             </div>
           </div>
+          <div class="flex items-center justify-center gap-4">
+            <a href="/architectural-render-n" class="cta-button" style="font-size: 1.1rem; padding: 1rem 2rem;">Experience
+              Core feature</a>
+            <a href="/architectural-render" class="cta-button" style="font-size: 1.1rem; padding: 1rem 2rem;">Experience
+              Design feature</a>
+          </div>
 
-          <a href="/architectural-render" class="cta-button" style="font-size: 1.1rem; padding: 1rem 2rem;">Experience
-            Demo
-            Now</a>
         </div>
       </div>
     </section>
@@ -200,10 +203,10 @@
       <div class="container">
         <h2>Ready to Revolutionize Your Architectural Planning Process?</h2>
         <p>Join the leading architecture firms and developers already using ArchiFuture AI</p>
-        <div class="cta-buttons">
+        <!-- <div class="cta-buttons">
           <a href="#" class="btn-primary">Start Free Trial</a>
           <a href="#" class="btn-secondary">Schedule Demo</a>
-        </div>
+        </div> -->
       </div>
     </section>
 
