@@ -767,6 +767,8 @@ const generateVideo = () => {
     background: white;
     margin-top: 10px;
     border-radius: 12px;
+    display: flex;
+    justify-content: center;
 }
 
 .video-item {
