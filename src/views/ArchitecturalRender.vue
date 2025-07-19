@@ -198,6 +198,7 @@ const agreedToPrivacy = ref(false)
 
 // 生成结果
 const generatedResults = ref([])
+const generatedResult = ref(null)
 const resultShowIndex = ref(0)
 
 const showTooltip = ref(false)
@@ -248,6 +249,7 @@ const generate3D = () => {
     setTimeout(() => {
         isLoading.value = false
         generatedResults.value = [resultImage, resultImage, resultImage]
+        generatedResult.value = resultImage
     }, 1200);
 }
 
