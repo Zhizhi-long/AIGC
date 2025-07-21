@@ -113,9 +113,6 @@
                             </div>
                         </div>
                         <div class="bottom-btn-content">
-                            <button class="reproduce-btn" @click="reproduceImg">
-                                Reproduce
-                            </button>
                             <button class="download-btn" @click="downloadResult">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -249,16 +246,15 @@ const generate3D = () => {
     setTimeout(() => {
         isLoading.value = false
         generatedResults.value = [resultImage, resultImage, resultImage]
-        generatedResult.value = resultImage
     }, 1200);
 }
 
 // 下载结果
 const downloadResult = () => {
-    if (!generatedResult.value) return
+    if (!generatedResult.value.length) return
 
     const link = document.createElement('a')
-    link.href = generatedResult.value
+    link.href = generatedResults.value[0]
     link.download = '3d-result.png'
     link.click()
 }
